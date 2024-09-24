@@ -45,9 +45,7 @@ public class CustomLoginServiceImpl implements CustomLoginService {
 		if(optionalUser.isPresent()) {
 			UserRegistrationDetails userSeat = optionalUser.get();
 			Optional<UserPassword> optionalUserPass = userPasswordRepo.findByUserDetailsId(userSeat.getId());
-			GrantedAuthority authority = new SimpleGrantedAuthority("ADMIN");
-			Collection<GrantedAuthority> authorities = Collections.singleton(authority);
-			return new User(username, optionalUserPass.get().getPassword(), authorities);
+			return new User(username, optionalUserPass.get().getPassword(), new HashSet<GrantedAuthority>());
 		}
 		
 		throw new UsernameNotFoundException("INVALID USER CREDENTIALS");
