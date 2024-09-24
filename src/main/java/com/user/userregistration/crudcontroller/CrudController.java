@@ -18,7 +18,7 @@ import com.user.userregistration.registrationandauthcontroller.dto.UserRegistrat
 
 
 @RestController
-@RequestMapping("/admin/userOperations")
+@RequestMapping("/adminuser")
 public class CrudController {
 	
 	
@@ -36,8 +36,8 @@ public class CrudController {
 	
 	
 	
-	@DeleteMapping("/delete/{email}")
-	@PreAuthorize("hasAnyAuthority('ADMIN')")
+	@DeleteMapping("/userOperations/delete/{email}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<String> deleteUser(@PathVariable String email) {
 		try {
 			crudService.deleteUserByEmail(email);
