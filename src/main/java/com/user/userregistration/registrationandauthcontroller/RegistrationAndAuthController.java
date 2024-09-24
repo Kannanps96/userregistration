@@ -81,6 +81,7 @@ public class RegistrationAndAuthController {
 	            Map<String, String> claims = new HashMap<>();
 	            claims.put("id", String.valueOf(userLoginService.findUserByEmail(request.getUsername()).getId()));
 	            claims.put("username", request.getUsername());
+		    claims.put("roles", "ADMIN");
 
 	            String token = jwtHelper.createJwtForClaims(request.getUsername(), claims);
 	            LoginResponse loginResponse = new LoginResponse(token);
